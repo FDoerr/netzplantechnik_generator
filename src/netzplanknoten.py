@@ -2,11 +2,18 @@
 
 class Netzplanknoten():
 
-    def __init__(self, name:str, dauer:int, direkte_nachfolger:list[str]|None = None):
-        # TODO: wie speichere ich die vorgänger?
-        self.name: str  = name 
+    def __init__(
+                self,
+                name:str,
+                dauer:int,
+                direkte_nachfolger:list[Netzplanknoten]|None = None,
+                direkte_vorgaenger:list[Netzplanknoten]|None = None
+                ) -> None:
+        
+        self.name:  str = name 
         self.dauer: int = dauer
         self.direkte_nachfolger: list[str]|None = direkte_nachfolger
+        self.direkte_vorgaenger: list[str]|None = direkte_vorgaenger   
 
         self.faz: int|None = None # TODO: Direkt berechnen
         self.fez: int|None = None # TODO: Direkt berechnen
@@ -15,8 +22,10 @@ class Netzplanknoten():
         self.sez: int|None = None     
       
         self.gesamt_puffer: int|None = None
-        self.freier_puffer: int|None = None        
-    
+        self.freier_puffer: int|None = None   
+
+          
+        
     def __repr__(self) -> str:
         return f'''
                 Knoten:
