@@ -6,14 +6,14 @@ class Netzplanknoten():
                 self,
                 name:str,
                 dauer:int,
-                direkte_nachfolger:list[Netzplanknoten]|None = None,
-                direkte_vorgaenger:list[Netzplanknoten]|None = None
+                direkte_nachfolger:list = None,
+                direkte_vorgaenger:list = None
                 ) -> None:
         
         self.name:  str = name 
         self.dauer: int = dauer
-        self.direkte_nachfolger: list[str]|None = direkte_nachfolger
-        self.direkte_vorgaenger: list[str]|None = direkte_vorgaenger   
+        self.direkte_nachfolger: list[str] = direkte_nachfolger
+        self.direkte_vorgaenger: list[str] = []
 
         self.faz: int|None = None # TODO: Direkt berechnen
         self.fez: int|None = None # TODO: Direkt berechnen
@@ -27,18 +27,18 @@ class Netzplanknoten():
           
         
     def __repr__(self) -> str:
-        return f'''
-                Knoten:
-                {self.name=}
-                {self.dauer=}
-                {self.direkte_nachfolger=}
-                {self.faz=}
-                {self.fez=}
-                {self.saz=}
-                {self.sez=}
-                {self.gesamt_puffer=}
-                {self.freier_puffer=}
-                '''
+        return f'{self.name}'
+        
+                # {self.dauer=}
+                # {self.direkte_nachfolger=}
+                # {self.direkte_vorgaenger=}
+                # {self.faz=}
+                # {self.fez=}
+                # {self.saz=}
+                # {self.sez=}
+                # {self.gesamt_puffer=}
+                # {self.freier_puffer=}
+        
 
     def berechne_faz(self):
         # max FEZ des Vorgängers
