@@ -39,7 +39,7 @@ class Netzplanknoten():
                 # {self.freier_puffer=}
         
 
-    def berechne_faz(self):
+    def berechne_faz(self) -> None:
         # max FEZ des Vorgängers
 
         max_fez_vorgaenger = 0
@@ -52,10 +52,10 @@ class Netzplanknoten():
 
         self.faz = max_fez_vorgaenger
 
-        print(f'{self.name=} FAZ gesetzt: {self.faz=}')
+        print(f'{self.name=}  ->  {self.faz=}')
 
 
-    def berechne_fez(self):
+    def berechne_fez(self) -> None:
         # faz + dauer
 
         if self.faz is None: # start des netzplans
@@ -63,11 +63,12 @@ class Netzplanknoten():
         else:            
             self.fez = self.faz + self.dauer 
 
-        print(f'{self.name=} FEZ gesetzt: {self.fez=}')
+        print(f'{self.name=}  ->  {self.fez=}')
 
 
-    def berechne_sez(self):
+    def berechne_sez(self) -> None:
         # min SAZ des nachfolgers
+
         dir_nachfolger = self.direkte_nachfolger
         if dir_nachfolger == [] or dir_nachfolger is None : #Ende des Netzplans
             self.sez = self.fez
@@ -79,22 +80,29 @@ class Netzplanknoten():
 
             self.sez = min(liste_saz_nachfolger)
         
-        print(f'{self.name=} SEZ gesetzt: {self.sez=}')
+        print(f'{self.name=}  ->  {self.sez=}')
         
 
-    def berechne_saz(self):
+    def berechne_saz(self) -> ValueError | None:
         # SEZ - dauer
+
         if self.sez is None:
             return ValueError(f'Error: SEZ von {self.name=} ist None')
         self.saz = self.sez - self.dauer
 
-        print(f'{self.name=} SAZ gesetzt: {self.saz=}')
-
+        print(f'{self.name=}  ->  {self.saz=}')
 
 
     def berechne_gesamt_puffer(self):
         # SAZ - FAZ
-        ...
+        
+        if self.saz is None or self.sez is None:
+           return ValueError(f'Error: SAZ oder SEZ von {self.name=} ist None')
+        
+        self.gesamt_puffer = self.saz - self.faz # type: ignore
+
+        print(f'{self.name=}  ->  {self.gesamt_puffer=}')
+
 
     def berechne_freier_puffer(self):
         # min FAZ des Nachfolgers - FEZ
