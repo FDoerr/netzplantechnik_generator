@@ -7,13 +7,13 @@ class Netzplanknoten():
                 name:str,
                 dauer:int,
                 direkte_nachfolger:list|None = None,
-                direkte_vorgaenger:list|None = None
+                direkte_vorgaenger:list|None = None #TODO: line not needed?
                 ) -> None:
         
         self.name:  str = name 
         self.dauer: int = dauer
         self.direkte_nachfolger: list|None = direkte_nachfolger
-        self.direkte_vorgaenger: list = []
+        self.direkte_vorgaenger: list = list()
 
         self.faz: int|None = None 
         self.fez: int|None = None 
@@ -23,7 +23,6 @@ class Netzplanknoten():
       
         self.gesamt_puffer: int|None = None
         self.freier_puffer: int|None = None   
-
           
         
     def __repr__(self) -> str:
@@ -53,9 +52,7 @@ class Netzplanknoten():
 
         self.faz = max_fez_vorgaenger
 
-        #print(f'{self.name=} FAZ gesetzt: {self.faz=}')
-
-
+        print(f'{self.name=} FAZ gesetzt: {self.faz=}')
 
 
     def berechne_fez(self):
@@ -66,16 +63,34 @@ class Netzplanknoten():
         else:            
             self.fez = self.faz + self.dauer 
 
-        #print(f'{self.name=} FEZ gesetzt: {self.fez=}')
+        print(f'{self.name=} FEZ gesetzt: {self.fez=}')
 
 
     def berechne_sez(self):
         # min SAZ des nachfolgers
-        ...
+        dir_nachfolger = self.direkte_nachfolger
+        if dir_nachfolger == [] or dir_nachfolger is None : #Ende des Netzplans
+            self.sez = self.fez
+
+        else:
+            liste_saz_nachfolger = list()
+            for nachfolger in dir_nachfolger:
+                liste_saz_nachfolger.append(nachfolger.saz)
+
+            self.sez = min(liste_saz_nachfolger)
+        
+        print(f'{self.name=} SEZ gesetzt: {self.sez=}')
+        
 
     def berechne_saz(self):
-        # SAZ - dauer
-        ...
+        # SEZ - dauer
+        if self.sez is None:
+            return ValueError(f'Error: SEZ von {self.name=} ist None')
+        self.saz = self.sez - self.dauer
+
+        print(f'{self.name=} SAZ gesetzt: {self.saz=}')
+
+
 
     def berechne_gesamt_puffer(self):
         # SAZ - FAZ

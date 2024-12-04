@@ -11,8 +11,10 @@ def main():
 
     alle_knoten = [knoten_1, knoten_2, knoten_3, knoten_4]
     netzplanmanager = Netzplanmanager(alle_knoten)
+
     netzplanmanager.vorgaenger_zuweisen()
     netzplanmanager.knoten_vorwaertsrechnung()
+    netzplanmanager.knoten_rueckwaertsrechnung()
     ...
 
 

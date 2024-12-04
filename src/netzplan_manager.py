@@ -18,9 +18,17 @@ class Netzplanmanager:
             print(knoten)
             print('--------------------')
 
+
     def knoten_vorwaertsrechnung(self):
         for knoten in self.alle_knoten:
             knoten.berechne_faz()
             knoten.berechne_fez()
+    
+
+    def knoten_rueckwaertsrechnung(self):
+        for knoten in reversed(self.alle_knoten):
+            knoten.berechne_sez()
+            knoten.berechne_saz()
+ 
  
 
