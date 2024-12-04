@@ -13,8 +13,8 @@ def main():
     netzplanmanager = Netzplanmanager(alle_knoten)
 
     netzplanmanager.vorgaenger_zuweisen()
-    netzplanmanager.knoten_vorwaertsrechnung()
-    netzplanmanager.knoten_rueckwaertsrechnung()
+    netzplanmanager.knoten_vorwaerts_rechnen()
+    netzplanmanager.knoten_rueckwaerts_rechnen()
     ...
 
 

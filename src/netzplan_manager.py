@@ -19,16 +19,23 @@ class Netzplanmanager:
             print('--------------------')
 
 
-    def knoten_vorwaertsrechnung(self):
+    def knoten_vorwaerts_rechnen(self):
         for knoten in self.alle_knoten:
             knoten.berechne_faz()
             knoten.berechne_fez()
     
 
-    def knoten_rueckwaertsrechnung(self):
+    def knoten_rueckwaerts_rechnen(self):
         for knoten in reversed(self.alle_knoten):
             knoten.berechne_sez()
             knoten.berechne_saz()
  
- 
+    
+    def freie_puffer_berechnen(self):
+        for knoten in self.alle_knoten:
+            knoten.berechne_freier_puffer()
+
+    def gesamt_puffer_berechnen(self):
+        for knoten in self.alle_knoten:
+            knoten.berechne_gesamt_puffer()
 
