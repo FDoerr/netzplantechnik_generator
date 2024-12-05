@@ -27,17 +27,27 @@ class Netzplanknoten():
         
     def __repr__(self) -> str:
         return f'{self.name}'
+    
         
-                # {self.dauer=}
-                # {self.direkte_nachfolger=}
-                # {self.direkte_vorgaenger=}
-                # {self.faz=}
-                # {self.fez=}
-                # {self.saz=}
-                # {self.sez=}
-                # {self.gesamt_puffer=}
-                # {self.freier_puffer=}
-        
+    def __str__(self) -> str:
+        output_str: str = f'''\
+   Direkte Vorgänger: {self.direkte_vorgaenger}
+    FAZ           FEZ
+     ↓             ↓
+  ┌──────┐      ┌──────┐
+  │  {self.faz:0>2}  │      │  {self.fez:0>2}  │
+  ├──────┴──────┴──────┤
+  │{self.name: ^20}│
+  ├──────┬──────┬──────┤
+D→│  {self.dauer:0>2}  │  {self.gesamt_puffer:0>2}  │  {self.freier_puffer:0>2}  │←FP
+  ├──────┼──────┼──────┤
+  │  {self.saz:0>2}  │   ↑  │  {self.sez:0>2}  │
+  └──────┘  GP  └──────┘
+     ↑              ↑
+    SAZ            SEZ
+   Direkte Nachfolger: {self.direkte_nachfolger}'''
+        return output_str
+
 
     def berechne_faz(self) -> None:
         # max FEZ des Vorgängers

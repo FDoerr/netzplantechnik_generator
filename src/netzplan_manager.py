@@ -40,3 +40,8 @@ class Netzplanmanager:
         for knoten in self.alle_knoten:
             knoten.berechne_gesamt_puffer()
 
+
+    def alle_knoten_ausgeben(self):
+        for knoten in self.alle_knoten:        
+            print('--------------------------------------------------------------')    
+            print(knoten)

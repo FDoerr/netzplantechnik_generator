@@ -17,6 +17,7 @@ def main():
     netzplanmanager.knoten_rueckwaerts_rechnen()
     netzplanmanager.gesamt_puffer_berechnen()
     netzplanmanager.freie_puffer_berechnen()
+    netzplanmanager.alle_knoten_ausgeben()
     ...
 
 
