@@ -52,7 +52,6 @@ class Netzplanknoten():
 
         self.faz = max_fez_vorgaenger
 
-        print(f'{self.name=}  ->  {self.faz=}')
 
 
     def berechne_fez(self) -> None:
@@ -62,8 +61,6 @@ class Netzplanknoten():
             self.fez = self.dauer      
         else:            
             self.fez = self.faz + self.dauer 
-
-        print(f'{self.name=}  ->  {self.fez=}')
 
 
     def berechne_sez(self) -> None:
@@ -80,17 +77,13 @@ class Netzplanknoten():
 
             self.sez = min(liste_saz_nachfolger)
         
-        print(f'{self.name=}  ->  {self.sez=}')
-        
-
+       
     def berechne_saz(self) -> ValueError | None:
         # SEZ - dauer
 
         if self.sez is None:
             return ValueError(f'Error: SEZ von {self.name=} ist None')
         self.saz = self.sez - self.dauer
-
-        print(f'{self.name=}  ->  {self.saz=}')
 
 
     def berechne_gesamt_puffer(self):
@@ -100,8 +93,6 @@ class Netzplanknoten():
            return ValueError(f'Error: SAZ oder SEZ von {self.name=} ist None')
         
         self.gesamt_puffer = self.saz - self.faz # type: ignore
-
-        print(f'{self.name=}  ->  {self.gesamt_puffer=}')
 
 
     def berechne_freier_puffer(self):
@@ -117,7 +108,4 @@ class Netzplanknoten():
                 liste_faz_nachfolger.append(nachfolger.faz)
 
             self.freier_puffer = min(liste_faz_nachfolger) - self.fez
-        
-        print(f'{self.name=}  ->  {self.freier_puffer=}')
-        
-        
+
