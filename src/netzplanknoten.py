@@ -106,4 +106,18 @@ class Netzplanknoten():
 
     def berechne_freier_puffer(self):
         # min FAZ des Nachfolgers - FEZ
-        ...
+
+        dir_nachfolger = self.direkte_nachfolger
+        if dir_nachfolger == [] or dir_nachfolger is None : #Ende des Netzplans
+            self.freier_puffer = 0
+
+        else:
+            liste_faz_nachfolger = list()
+            for nachfolger in dir_nachfolger:
+                liste_faz_nachfolger.append(nachfolger.faz)
+
+            self.freier_puffer = min(liste_faz_nachfolger) - self.fez
+        
+        print(f'{self.name=}  ->  {self.freier_puffer=}')
+        
+        
