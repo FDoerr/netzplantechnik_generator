@@ -1,4 +1,4 @@
-
+#TODO: Refactor: Ende des Netzplans überprüfung zu funktion
 
 class Netzplanknoten():
 
@@ -12,7 +12,12 @@ class Netzplanknoten():
         
         self.name:  str = name 
         self.dauer: int = dauer
-        self.direkte_nachfolger: list|None = direkte_nachfolger
+
+        if direkte_nachfolger is None:
+            self.direkte_nachfolger: list|None = list()
+        else:
+            self.direkte_nachfolger = direkte_nachfolger
+
         self.direkte_vorgaenger: list = list()
 
         self.faz: int|None = None 
