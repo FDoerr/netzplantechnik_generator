@@ -41,6 +41,18 @@ class Netzplanmanager:
             knoten.berechne_gesamt_puffer()
 
 
+    def kritischen_pfad_bestimmen(self) -> list[Netzplanknoten]:
+
+        kritischer_pfad_liste = list()
+
+        for knoten in self.alle_knoten:  
+            if knoten.gesamt_puffer == 0: 
+                kritischer_pfad_liste.append(knoten)
+
+        return kritischer_pfad_liste
+
+
+
     def alle_knoten_ausgeben(self):
         for knoten in self.alle_knoten:        
             print('--------------------------------------------------------------')    

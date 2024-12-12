@@ -18,6 +18,8 @@ def main():
     netzplanmanager.gesamt_puffer_berechnen()
     netzplanmanager.freie_puffer_berechnen()
     netzplanmanager.alle_knoten_ausgeben()
+    kritischer_pfad_liste= netzplanmanager.kritischen_pfad_bestimmen()
+    print('Kritischer Pfad: ', kritischer_pfad_liste)
     ...
 
 
