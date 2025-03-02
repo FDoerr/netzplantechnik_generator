@@ -63,7 +63,7 @@ class Netzplanmanager:
             print(knoten)
 
 
-
+    # TODO: Extract the visualization into it's own class
     def layout_schalen_winkel(self, graph, start_winkel=0, end_winkel=45):        
         
         start_knoten = list(graph.nodes())[0]
