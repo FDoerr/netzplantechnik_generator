@@ -13,12 +13,6 @@ class Netzplanmanager:
                 nachfolger.direkte_vorgaenger.append(knoten) # type: ignore
 
 
-    def knoten_platzieren(self):        
-        for knoten in self.alle_knoten:
-            print(knoten)
-            print('--------------------')
-
-
     def knoten_vorwaerts_rechnen(self) -> None:
         for knoten in self.alle_knoten:
             knoten.berechne_faz()
@@ -42,18 +36,28 @@ class Netzplanmanager:
 
 
     def kritischen_pfad_bestimmen(self) -> list[Netzplanknoten]:
-
         kritischer_pfad_liste = list()
 
         for knoten in self.alle_knoten:  
             if knoten.gesamt_puffer == 0: 
                 kritischer_pfad_liste.append(knoten)
 
-        return kritischer_pfad_liste
+        return kritischer_pfad_liste    
 
 
-
-    def alle_knoten_ausgeben(self):
+    def alle_knoten_ausgeben(self) -> None:
         for knoten in self.alle_knoten:        
             print('--------------------------------------------------------------')    
             print(knoten)
+
+    def generiere_mermaid_diagramm(self) -> str:
+        diagramm_str = "paste diagramm here:  https://mermaid.live/\n"
+        diagramm_str += "graph LR\n"
+        for knoten in self.alle_knoten:
+            diagramm_str += f"    {knoten.name}[\"{knoten.name}"
+            diagramm_str += f"<br>FAZ: {knoten.faz} | FEZ: {knoten.fez}"
+            diagramm_str += f"<br>D: {knoten.dauer} | GP: {knoten.gesamt_puffer} | FP: {knoten.freier_puffer}"
+            diagramm_str += f"<br>SAZ: {knoten.saz} | SEZ: {knoten.sez}\"]\n"
+            for vorgaenger in knoten.direkte_vorgaenger:
+                diagramm_str += f"    {vorgaenger.name} --> {knoten.name}\n"
+        return diagramm_str
