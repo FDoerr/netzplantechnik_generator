@@ -50,6 +50,7 @@ class Netzplanmanager:
             print('--------------------------------------------------------------')    
             print(knoten)
 
+
     def generiere_mermaid_diagramm(self) -> str:
         diagramm_str = "paste diagramm here:  https://mermaid.live/\n"
         diagramm_str += "graph LR\n"
